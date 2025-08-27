@@ -13,14 +13,14 @@ Trong bối cảnh nhu cầu chăm sóc sức khỏe ngày càng cao và quy mô
 Chính vì vậy, nhóm chúng em xây dựng **Hệ thống quản lý bệnh viện** với mục tiêu đáp ứng đồng thời hai nhu cầu quan trọng: bệnh nhân có thể dễ dàng đăng ký khám bệnh, tra cứu thông tin và theo dõi hồ sơ sức khỏe trực tuyến; trong khi đó đội ngũ y bác sĩ và nhân viên quản trị bệnh viện có thể quản lý bệnh án, lịch khám, thuốc men, viện phí và báo cáo thống kê một cách tập trung, nhanh chóng và chính xác.
 
 ## B. Đối tượng sử dụng
-Trong hệ thống quản lý bệnh viện, có ... nhóm người dùng chính:
-| Đối tượng            | Mô tả                                                      |
-| -------------------- | ---------------------------------------------------------- |
-| Bệnh nhân            | Là người đi khám bệnh và người nhập viện                   |
-| Lễ tân               | Là người tiếp nhận hồ sơ bệnh nhân khám và nhập viện       |
-| Nhân viên chuyên môn | Bác sỹ, y tá                                               |
-| Quản lý              | Quản lý nhân viên; thiết bị; thuốc, vật tư y tế; tài chính |
-| Giám đốc bệnh viện   | Người điều hành cấp cao nhất                               |
+Trong hệ thống quản lý bệnh viện, có 4 nhóm người dùng chính:
+| Đối tượng            | Mô tả                                                            |
+| -------------------- | ---------------------------------------------------------------- |
+| Bệnh nhân            | Là người đi khám bệnh và người nhập viện                         |
+| Nhân viên hành chính | Là người tiếp nhận hồ sơ bệnh nhân khám và nhập viện và thu ngân |
+| Bác sĩ               | Bác sĩ                                                           |
+| Quản lý              | Quản lý nhân viên; thiết bị; thuốc, vật tư y tế; tài chính       |
+| Giám đốc bệnh viện   | Người điều hành cấp cao nhất                                     |
 
 ## C. Thiết kế chi tiết của hệ thống
 
@@ -29,36 +29,92 @@ Trong hệ thống quản lý bệnh viện, có ... nhóm người dùng chính
 ### I. Mức ngoài - Khung nhìn người dùng
 
 #### 1. Bệnh nhân
-* Được cấp tài khoản gửi về sđt sau khi hoàn thành thủ tục. Tên đăng nhập sẽ chính là sđt của bệnh nhân.
-* Không có quyền sửa thông tin. 
-* Xem thông tin, lịch sử khám bệnh, lịch sử nhập viện, tình trạng bệnh, đơn thuốc đã được kê của bản thân và thông tin cơ bản của bác sĩ phụ trách
-* Đối với bệnh nhân nhập viện: có thể xem tình trạng, thuốc đã dùng trong thời gian nhập viện
 
-#### 2. Lễ tân
-* Được cấp tài khoản sau khi hoàn thiện hồ sơ
-* Có quyền thêm mới, xem, sửa, xóa thông tin cá nhân của bệnh nhân
+* **C**reate:
+  * Tạo tài khoản online
+  * Hẹn lịch khám online
 
-#### 3. Nhân viên chuyên môn
-* Được cấp tài khoản sau khi hoàn thiện hồ sơ
-* Có quyền xem, sửa thông tin khám, nhập viện, tình trạng bệnh, đơn thuốc đã kê của mỗi bệnh nhân
-* Có quyền xem danh sách các bệnh nhân nhập viện mà bản thân đang phụ trách
-* Đối với bệnh nhân nhập viện: có thể xem tình trạng, thuốc đã dùng trong thời gian nhập viện
+* **R**ead:
+  * Thông tin cá nhân
+  * Lịch sử khám bệnh hoặc nhập viện
+  * Tình trạng bệnh
+  * Đơn thuốc đã được kê
+  * Thông tin cơ bản của bác sĩ phụ trách
+  * Đối với bệnh nhân nhập viện: xem bệnh án
+
+* **U**pdate:
+  * Thông tin cá nhân
+  * Lịch khám chưa duyệt
+
+* **D**elete: NULL
+
+#### 2. Nhân viên hành chính
+* **C**reate:
+  * Hồ sơ bệnh nhân
+  * Lịch khám
+  * Hóa đơn thanh toán
+
+* **R**ead:
+  * Hồ sơ bệnh nhân
+  * Lịch khám
+  * Danh sách bác sĩ và tình trạng thời gian thực
+  * Danh sách giường trống và full
+
+* **U**pdate:
+  * Hồ sơ bệnh nhân
+  * Lịch khám
+  * Hóa đơn thanh toán
+  * Danh sách bác sĩ và tình trạng thời gian thực
+  * Danh sách giường trống và full
+
+* **D**elete: 
+  * Hồ sơ bệnh nhân
+
+#### 3. Bác sĩ
+* **C**reate:
+  * Bệnh án
+  * Dịch vụ chẩn đoán
+  * Đơn thuốc
+
+* **R**ead:
+  * Lịch sử bệnh án
+  * Lịch sử đơn thuốc
+  * Danh sách bệnh nhân chờ
+  * Danh sách bệnh nhân đang nhập viện bản thân phụ trách
+
+* **U**pdate:
+  * Bệnh án
+  * Dịch vụ chẩn đoán
+  * Đơn thuốc
+  * Tình trạng: rảnh hay bận
+
+* **D**elete: NULL
 
 #### 4. Quản lý
-* Quản lý hồ sơ nhân viên: 1 page gồm danh sách các nhân viên và các thông tin chính, click để xem chi tiết
-  * Thêm mới, xem, sửa, xóa, tìm kiếm thông tin của nhân viên (thông tin của nhân viên sẽ bao gồm cả các bệnh nhân mà nhân viên phụ trách, tài khoản của nhân viên ẩn mật khẩu)
+* **C**reate:
+  * Nhân viên hành chính, bác sĩ
+  * Trang thiết bị
+  * Dịch vụ chẩn đoán
+  * Loại thuốc, vật tư y tế
+  * Các khoản chi
 
-* Quản lý thiết bị:
-  * Thêm mới, xem, sửa, xóa, tìm kiếm thông tin thiết bị. Có cả tình trạng thiết bị (chờ bảo trì, hoạt động).
+* **R**ead:
+  * Nhân viên hành chính, bác sĩ
+  * Trang thiết bị
+  * Dịch vụ chẩn đoán
+  * Loại thuốc, vật tư y tế
+  * Các khoản chi
+  * Tình trạng phòng: trống hay full
+  * Báo cáo thu chi, thống kê bệnh nhân
 
-* Quản lý thuốc, vật tư y tế:
-  * Thêm mới, xem, sửa, xóa. Tăng giảm số lượng còn trong kho
+* **U**pdate:
+  * Nhân viên hành chính, bác sĩ
+  * Trang thiết bị
+  * Dịch vụ chẩn đoán
+  * Loại thuốc, vật tư y tế
 
-* Quản lý thu chi:
-  * Thêm, xem, sửa, xóa các khoản thu
-  * Thêm, xem, sửa, xóa các khoản chi
-  * Xem báo cáo thu chi
-
-#### 5. Giám đốc bệnh viện
-* Có tất cả các quyền trên
-* Thêm quyền có thể thêm mới, xem, sửa, xóa thông tin của các quản lý
+* **D**elete: 
+  * Nhân viên hành chính, bác sĩ
+  * Trang thiết bị
+  * Dịch vụ chẩn đoán
+  * Loại thuốc, vật tư y tế
