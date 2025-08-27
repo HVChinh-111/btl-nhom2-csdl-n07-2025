@@ -24,7 +24,7 @@ Trong hệ thống quản lý bệnh viện, có ... nhóm người dùng chính
 
 ## C. Thiết kế chi tiết của hệ thống
 
-![Mô hình trừu trượng 3 lớp](images/mo_hinh_truu_tuong_3_lop.png)
+![Mô hình trừu trượng 3 lớp](images-of-readme/mo_hinh_truu_tuong_3_lop.png)
 
 ### I. Mức ngoài - Khung nhìn người dùng
 
