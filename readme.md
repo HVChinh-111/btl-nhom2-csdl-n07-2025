@@ -20,7 +20,6 @@ Trong hệ thống quản lý bệnh viện, có 4 nhóm người dùng chính:
 | Nhân viên hành chính | Là người tiếp nhận hồ sơ bệnh nhân khám và nhập viện và thu ngân |
 | Bác sĩ               | Bác sĩ                                                           |
 | Quản lý              | Quản lý nhân viên; thiết bị; thuốc, vật tư y tế; tài chính       |
-| Giám đốc bệnh viện   | Người điều hành cấp cao nhất                                     |
 
 ## C. Thiết kế chi tiết của hệ thống
 
@@ -118,3 +117,5 @@ Trong hệ thống quản lý bệnh viện, có 4 nhóm người dùng chính:
   * Trang thiết bị
   * Dịch vụ chẩn đoán
   * Loại thuốc, vật tư y tế
+
+### II. Mức khái niệm
