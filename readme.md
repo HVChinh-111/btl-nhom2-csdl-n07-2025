@@ -8,7 +8,7 @@
 > * **Đỗ Minh Hoàng - B23DCCN328**
 
 ## A. Giới thiệu đề tài
-Trong bối cảnh nhu cầu chăm sóc sức khỏe ngày càng cao và quy mô hoạt động của các bệnh viện ngày càng mở rộng, việc ứng dụng công nghệ thông tin vào quản lý trở thành một xu thế tất yếu.
+Hiện nay nhu cầu chăm sóc sức khỏe ngày càng cao và quy mô hoạt động của các bệnh viện ngày càng mở rộng, việc ứng dụng công nghệ thông tin vào quản lý trở thành một xu thế tất yếu.
 
 Chính vì vậy, nhóm chúng em xây dựng **Hệ thống quản lý bệnh viện** với mục tiêu đáp ứng đồng thời hai nhu cầu quan trọng: bệnh nhân có thể dễ dàng đăng ký khám bệnh, tra cứu thông tin và theo dõi hồ sơ sức khỏe trực tuyến; trong khi đó đội ngũ y bác sĩ và nhân viên quản trị bệnh viện có thể quản lý bệnh án, lịch khám, thuốc men, viện phí và báo cáo thống kê một cách tập trung, nhanh chóng và chính xác.
 
