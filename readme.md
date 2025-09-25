@@ -140,84 +140,84 @@ Nếu cần thuốc, bác sĩ lập toa thuốc (`Prescription`) và thêm các 
 #### b. Quan hệ & ánh xạ
 
 ##### 1. User — Patient (ISA)
-* Cardinality: User 1 — 0..1 Patient
-* Participation: Patient total vào User; User partial
-* Mapping: Patient.patient_id PK/FK → User.user_id (shared PK)
+* **Cardinality**: User 1 — 0..1 Patient
+* **Participation**: Patient total vào User; User partial
+* **Mapping**: Patient.patient_id PK/FK → User.user_id (shared PK)
 
 ##### 2. User — Doctor (ISA)
-* Cardinality: User 1 — 0..1 Doctor
-* Participation: Doctor total; User partial
-* Mapping: Doctor.doctor_id PK/FK → User.user_id (shared PK)
+* **Cardinality**: User 1 — 0..1 Doctor
+* **Participation**: Doctor total; User partial
+* **Mapping**: Doctor.doctor_id PK/FK → User.user_id (shared PK)
 
 ##### 3. ClinicRoom — TimeSlot
-* Cardinality: ClinicRoom 1 — N TimeSlot
-* Participation: TimeSlot total; ClinicRoom partial
-* Mapping: TimeSlot.room_id NOT NULL FK → ClinicRoom.room_id
+* **Cardinality**: ClinicRoom 1 — N TimeSlot
+* **Participation**: TimeSlot total; ClinicRoom partial
+* **Mapping**: TimeSlot.room_id NOT NULL FK → ClinicRoom.room_id
 
 ##### 4. Doctor — TimeSlot
-* Cardinality: Doctor 1 — N TimeSlot
-* Participation: TimeSlot total; Doctor partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Doctor 1 — N TimeSlot
+* **Participation**: TimeSlot total; Doctor partial
+* **Mapping** / Ràng buộc:
 TimeSlot.doctor_id NOT NULL FK → Doctor.doctor_id
 UNIQUE (doctor_id, start_time) (chặn trùng khung)
 CHECK (end_time > start_time)
 
 ##### 5. Patient — Appointment
-* Cardinality: Patient 1 — N Appointment
-* Participation: Appointment total; Patient partial
-* Mapping: Appointment.patient_id NOT NULL FK → Patient.patient_id
+* **Cardinality**: Patient 1 — N Appointment
+* **Participation**: Appointment total; Patient partial
+* **Mapping**: Appointment.patient_id NOT NULL FK → Patient.patient_id
 
 ##### 6. TimeSlot — Appointment
-* Cardinality: TimeSlot 1 — 0..1 Appointment
-* Participation: Appointment total; TimeSlot partial
-* Mapping / Ràng buộc:
+* **Cardinality**: TimeSlot 1 — 0..1 Appointment
+* **Participation**: Appointment total; TimeSlot partial
+* **Mapping** / Ràng buộc:
 Appointment.slot_id NOT NULL FK → TimeSlot.slot_id
 UNIQUE (slot_id) (mỗi slot tối đa 1 lịch)
 Đồng bộ trạng thái: khi có Appointment ⇒ TimeSlot.status='BOOKED'
 
 ##### 7. Appointment — Encounter
-* Cardinality: Appointment 1 — 0..1 Encounter
-* Participation: Encounter total; Appointment partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Appointment 1 — 0..1 Encounter
+* **Participation**: Encounter total; Appointment partial
+* **Mapping** / Ràng buộc:
 Encounter.appointment_id NOT NULL UNIQUE FK → Appointment.appointment_id
 Suy ra bác sĩ của Encounter qua Appointment.slot_id → TimeSlot.doctor_id (không cần cột doctor_id trong Encounter)
 
 ##### 8. Encounter — ProcedureOrder (đã gộp kết quả inline)
-* Cardinality: Encounter 1 — N ProcedureOrder
-* Participation: ProcedureOrder total; Encounter partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Encounter 1 — N ProcedureOrder
+* **Participation**: ProcedureOrder total; Encounter partial
+* **Mapping** / Ràng buộc:
 ProcedureOrder.encounter_id NOT NULL FK → Encounter.encounter_id
 ProcedureOrder.procedure_code NOT NULL FK → ProcedureCatalog.procedure_code
 Trạng thái: status ∈ {REQUESTED, IN_PROGRESS, COMPLETED, CANCELLED}
 Kết quả inline: result_status ∈ {PENDING, READY, AMENDED}, result_text, performed_at, performed_by FK → User.user_id
 
-##### 9. ProcedureCatalog — ProcedureOrder
-* Cardinality: ProcedureCatalog 1 — N ProcedureOrder
-* Participation: ProcedureOrder total; ProcedureCatalog partial
-* Mapping: ProcedureOrder.procedure_code FK → ProcedureCatalog.procedure_code
+##### 9. Procedure — ProcedureOrder
+* **Cardinality**: Procedure 1 — N ProcedureOrder
+* **Participation**: ProcedureOrder total; Procedure partial
+* **Mapping**: ProcedureOrder.procedure_code FK → Procedure.procedure_code
 
 ##### 10. Encounter — Prescription
-* Cardinality: Encounter 1 — 0..1 Prescription
-* Participation: Prescription total; Encounter partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Encounter 1 — 0..1 Prescription
+* **Participation**: Prescription total; Encounter partial
+* **Mapping** / Ràng buộc:
 Prescription.encounter_id NOT NULL UNIQUE FK → Encounter.encounter_id
 
 ##### 11. Prescription — PrescriptionItem
-* Cardinality: Prescription 1 — N PrescriptionItem
-* Participation: PrescriptionItem total; Prescription partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Prescription 1 — N PrescriptionItem
+* **Participation**: PrescriptionItem total; Prescription partial
+* **Mapping** / Ràng buộc:
 PrescriptionItem.prescription_id NOT NULL FK → Prescription.prescription_id
 CHECK (quantity > 0)
 
-##### 12. MedicineCatalog — PrescriptionItem
-* Cardinality: MedicineCatalog 1 — N PrescriptionItem
-* Participation: PrescriptionItem total; MedicineCatalog partial
-* Mapping: PrescriptionItem.medicine_code FK → MedicineCatalog.medicine_code
+##### 12. Medicine — PrescriptionItem
+* **Cardinality**: Medicine 1 — N PrescriptionItem
+* **Participation**: PrescriptionItem total; Medicinepartial
+* **Mapping**: PrescriptionItem.medicine_code FK → Medicine.medicine_code
 
 ##### 13. Encounter — Payment
-* Cardinality: Encounter 1 — N Payment (hoặc 1—0..1 nếu mỗi ca chỉ thu 1 lần)
-* Participation: Payment total; Encounter partial
-* Mapping / Ràng buộc:
+* **Cardinality**: Encounter 1 — N Payment (hoặc 1—0..1 nếu mỗi ca chỉ thu 1 lần)
+* **Participation**: Payment total; Encounter partial
+* **Mapping** / Ràng buộc:
 Payment.encounter_id NOT NULL FK → Encounter.encounter_id
 Payment.patient_id NOT NULL FK → Patient.patient_id
 Payment.staff_user_id FK → User.user_id (người thu, role=STAFF)
