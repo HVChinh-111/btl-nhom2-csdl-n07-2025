@@ -226,3 +226,9 @@ method ∈ {CASH, CARD, EWALLET, INSURANCE}, status ∈ {PAID, UNPAID}
 
 ### II. Mô hình E-R
 ![alt text](images-of-readme/mo_hinh_e-r.jpg)
+
+Viết lại thực thể -> Vẽ ER -> Chuyển thành lược đồ quan hệ -> Tạo TABLE trong MySQL (MySQL WorkBench) & insert một số data sẵn -> [Xong Frontend]
+
+- Viết query
+- Code JDBC
+- Code Feature (nhiều)
