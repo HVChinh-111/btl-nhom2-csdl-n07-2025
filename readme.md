@@ -227,8 +227,44 @@ method ∈ {CASH, CARD, EWALLET, INSURANCE}, status ∈ {PAID, UNPAID}
 ### II. Mô hình E-R
 ![alt text](images-of-readme/mo_hinh_e-r.jpg)
 
-Viết lại thực thể -> Vẽ ER -> Chuyển thành lược đồ quan hệ -> Tạo TABLE trong MySQL (MySQL WorkBench) & insert một số data sẵn -> [Xong Frontend]
+Viết lại thực thể -> Vẽ ER: chị An
+-> Chuyển thành lược đồ quan hệ: Trang
+-> Tạo TABLE trong MySQL (MySQL WorkBench) & insert một số data sẵn[Xong Frontend]: Hoàng
+- Viết query: Hoàng
+- Code Java: Chính
 
-- Viết query
-- Code JDBC
-- Code Feature (nhiều)
+
+- Git & github
+- JDBC: https://github.com/HVChinh-111/Demo-JDBC
+
+### I. Biểu mẫu thêm, sửa, xóa, tìm kiếm
+
+#### 1. ENCOUNTER
+
+#### 2. MEDICINE
+
+### III. Chia việc
+
+#### 1. Thiết kế thực thể + Vẽ ER
+- **Người thực hiện**: chị An
+- **Deadline:** ...
+
+#### 2. Chuyển thành lược đồ quan hệ
+- **Người thực hiện**: Trang
+- **Deadline:** 22h t4 12/11
+
+#### 4. Tạo TABLE trong MySQL
+- **Người thực hiện**: Hoàng
+- **Deadline:** 22h t4 12/11
+
+#### 5. Viết query
+- **Người thực hiện**: Hoàng
+- **Deadline:** 
+
+#### 6. JavaFX
+- **Người thực hiện**: Dương
+- **Deadline:** 22h t4 12/11
+
+#### 7. Java + JDBC
+- **Người thực hiện**: Chính
+- **Deadline:** ...
