@@ -1,4 +1,4 @@
-package com.btlcsdl;
+package com.btlcsdl.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

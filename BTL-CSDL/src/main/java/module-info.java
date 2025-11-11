@@ -5,4 +5,6 @@ module com.btlcsdl {
 
     opens com.btlcsdl to javafx.fxml;
     exports com.btlcsdl;
+    exports com.btlcsdl.controller;
+    opens com.btlcsdl.controller to javafx.fxml;
 }
